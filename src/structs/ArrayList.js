@@ -1,4 +1,4 @@
-function ArrayList() {
+const ArrayList = function() {
   return new Array();
 };
 
