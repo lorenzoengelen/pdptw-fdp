@@ -17,34 +17,47 @@ Location.prototype.compareTo = function(obj) {
 };
 
 Location.prototype.equals = function(obj) {
-
 };
 
 Location.prototype.isPickup = function() {
-
+  return (this.pickupSibling === 0 && this.deliverySibling !== 0);
 };
 
 Location.prototype.isDelivery = function() {
-
-};
-
-Location.prototype.parseLiLimLine = function(liLimLine) {
-
+  return (this.pickupSibling !== 0 && this.deliverySibling === 0);
 };
 
 // GETTERS
 Location.prototype.getId = function() {
-
+  return this.id;
 };
 
-Location.prototype.getRef = function() {
-
+Location.prototype.getReference = function() {
+  return this.reference;
 };
 
-Location.prototype.getCordX = function() {
-
+Location.prototype.getLon = function() {
+  return this.lon;
 };
 
-// SETTERS
+Location.prototype.getLat = function() {
+  return this.lat;
+};
+
+Location.prototype.getDemand = function() {
+  return this.demand;
+};
+
+Location.prototype.getEarliestServiceTime = function() {
+  return this.earliestServiceTime;
+};
+
+Location.prototype.getLatestServiceTime = function() {
+  return this.latestServiceTime;
+};
+
+Location.prototype.getServiceTimeDuration = function() {
+  return this.serviceTimeDuration;
+};
 
 module.exports = Location;
