@@ -19,6 +19,10 @@ Location.prototype.compareTo = function(obj) {
 Location.prototype.equals = function(obj) {
 };
 
+Location.prototype.isDepot = function() {
+  return (this.pickupSibling === 0 && this.deliverySibling === 0);
+};
+
 Location.prototype.isPickup = function() {
   return (this.pickupSibling === 0 && this.deliverySibling !== 0);
 };
