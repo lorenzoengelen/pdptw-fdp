@@ -24,7 +24,7 @@ Problem.prototype._calcDistTime = function() {
 };
 
 Problem.prototype._createSortedArrays = function() {
-  console.log(this.locations);
+  // console.log(this.locations);
 };
 
 Problem.prototype._findDistance = function() {
