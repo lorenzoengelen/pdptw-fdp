@@ -42,7 +42,13 @@ Problem.prototype._calcDistTime = function() {
 };
 
 Problem.prototype._createSortedArrays = function() {
-  // console.log(this.locations);
+  const compareLatestServiceTime = (locA, locB) => {
+    return locA.getLatestServiceTime() - locB.getLatestServiceTime();
+  };
+
+  this.sortedLocations = this.locations.sort(compareLatestServiceTime);
+  this.sortedPickupLocations = this.sortedPickupLocations.sort(compareLatestServiceTime);
+  this.sortedDeliveryLocations = this.sortedDeliveryLocations.sort(compareLatestServiceTime);
 };
 
 Problem.prototype._queryDistance = function(x1, y1, x2, y2) {
@@ -72,6 +78,10 @@ Problem.prototype.createProblem = function(instance) {
     this.locations.push(delivery);
     this.refLocations.put(pickup.getReference(), pickup.getId());
     this.refLocations.put(delivery.getReference(), delivery.getId());
+
+    // prep for _createSortedArrays;
+    this.sortedPickupLocations.push(pickup);
+    this.sortedDeliveryLocations.push(delivery);
   });
 
   this._calcDistTime();
@@ -102,6 +112,10 @@ Problem.prototype.getTime = function(i, j) {
 
 Problem.prototype.getLocation = function(i) {
   return this.locations[i];
+};
+
+Problem.prototype.getLocationByReference = function(ref) {
+  return this.locations[this.refLocations.get(ref)];
 };
 
 Problem.prototype.getNumberOfLocations = function() {
