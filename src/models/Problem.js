@@ -1,7 +1,7 @@
 const Location = require('./Location.js');
 const HashMap = require('../structs/HashMap.js');
 const Matrix = require('../structs/Matrix.js');
-const {euclideanDistance} = require('../utils/distance.js');
+const distance = require('../utils/distance.js');
 
 const Problem = function() {
   this.locations = [];
@@ -21,14 +21,24 @@ const Problem = function() {
 
 // private methods
 Problem.prototype._calcDistTime = function() {
-  this.distanceMatrix = new Array(this.NUMBER_OF_LOCATIONS);
-  for (let i = 0, lng = this.distanceMatrix.length; i < lng; i ++) {
-    this.distanceMatrix[i] = new Array(lng);
+  this.distanceMatrix = new Matrix(this.NUMBER_OF_LOCATIONS);
+  for (let i = 0; i < this.NUMBER_OF_LOCATIONS; i++) {
+    const x1 = this.locations[i].getLon();
+    const y1 = this.locations[i].getLat();
+
+    for (let j = 0; j < this.NUMBER_OF_LOCATIONS; j++) {
+      if (i === j) {
+        this.distanceMatrix[i][j] = 0;
+      } else {
+        const x2 = this.locations[j].getLon();
+        const y2 = this.locations[j].getLat();
+        this.distanceMatrix[i][j] = this._queryDistance(x1, y1, x2, y2);
+      }
+    }
   }
   
-  let mx = new Matrix(5);
-  console.log(mx);
-  // console.log(mx.getValue(2, 0));
+  // TODO create timeMatrix
+  this.timeMatrix = this.distanceMatrix;
 };
 
 Problem.prototype._createSortedArrays = function() {
@@ -36,6 +46,7 @@ Problem.prototype._createSortedArrays = function() {
 };
 
 Problem.prototype._queryDistance = function(x1, y1, x2, y2) {
+  return distance(x1, y1, x2, y2);
 };
 
 // public methods
