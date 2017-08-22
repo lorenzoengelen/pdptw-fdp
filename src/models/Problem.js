@@ -1,6 +1,7 @@
 const Location = require('./Location.js');
-
 const HashMap = require('../structs/HashMap.js');
+const Matrix = require('../structs/Matrix.js');
+const {euclideanDistance} = require('../utils/distance.js');
 
 const Problem = function() {
   this.locations = [];
@@ -10,8 +11,8 @@ const Problem = function() {
 
   this.refLocations = new HashMap();
 
-  this.distance = null;
-  this.time = null;
+  this.distanceMatrix = null;
+  this.timeMatrix = null;
 
   this.sortedLocations = [];
   this.sortedPickup = [];
@@ -20,14 +21,21 @@ const Problem = function() {
 
 // private methods
 Problem.prototype._calcDistTime = function() {
-  // console.log(this.locations);
+  this.distanceMatrix = new Array(this.NUMBER_OF_LOCATIONS);
+  for (let i = 0, lng = this.distanceMatrix.length; i < lng; i ++) {
+    this.distanceMatrix[i] = new Array(lng);
+  }
+  
+  let mx = new Matrix(5);
+  console.log(mx);
+  // console.log(mx.getValue(2, 0));
 };
 
 Problem.prototype._createSortedArrays = function() {
   // console.log(this.locations);
 };
 
-Problem.prototype._findDistance = function() {
+Problem.prototype._queryDistance = function(x1, y1, x2, y2) {
 };
 
 // public methods
@@ -35,7 +43,7 @@ Problem.prototype.createProblem = function(instance) {
   const {orders, vehicle} = instance;
 
   this.NUMBER_OF_ORDERS = orders.length;
-  this.NUMBER_OF_LOCATIONS = orders.length * 2;
+  this.NUMBER_OF_LOCATIONS = orders.length * 2 + 1;
   this.VEHICLE_CAPACITY = vehicle.capacity;
   
   let id = 0;
