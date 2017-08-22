@@ -5,21 +5,18 @@ const ArrayList = require('../structs/ArrayList.js');
 
 const Solver = function() {
   this.problem = new Problem();
-
-  this.stages = new Array();
-  this.stage = new Stage();
-  this.finalStage = new Stage();
+  this.stages = new ArrayList();
 };
 
 Solver.prototype.solve = function(instance, timeout) {
+  const start = Date.now();
+  const end = Date.now() + timeout * 60 * 1000;
 
   this.problem.createProblem(instance);
   
-  // this.stage.createInitalStage();
-  // stages.add(stage);
+  const stage = new Stage(this.problem);
+  stage.createInitialStage();
 
-  const start = Date.now();
-  const end = Date.now();
 };
 
 module.exports = Solver;
