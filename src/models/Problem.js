@@ -15,8 +15,8 @@ const Problem = function() {
   this.timeMatrix = null;
 
   this.sortedLocations = [];
-  this.sortedPickup = [];
-  this.sortedDelivery = [];
+  this.sortedPickupLocations = [];
+  this.sortedDeliveryLocations = [];
 };
 
 // private methods
@@ -76,5 +76,65 @@ Problem.prototype.createProblem = function(instance) {
 };
 
 // getters
+Problem.prototype.getAvgDistanceCost = function() {
+};
+
+Problem.prototype.getAvgTimeCost = function() {
+};
+
+Problem.prototype.getAvgWindowSize = function() {
+};
+
+Problem.prototype.getVehicleCapacity = function() {
+  return this.VEHICLE_CAPACITY;
+};
+
+Problem.prototype.getDistance = function(i, j) {
+  return this.distanceMatrix[i][j];
+};
+
+Problem.prototype.getTime = function(i, j) {
+  return this.timeMatrix[i][j];
+};
+
+Problem.prototype.getLocation = function(i) {
+  return this.locations[i];
+};
+
+Problem.prototype.getNumberOfLocations = function() {
+  return this.NUMBER_OF_LOCATIONS;
+};
+
+Problem.prototype.getNumberOfOrders = function() {
+  return this.NUMBER_OF_ORDERS;
+};
+
+Problem.prototype.getServiceTimeDuration = function(i) {
+  return this.locations[i].getServiceTimeDuration();
+};
+
+Problem.prototype.getSortedLocations = function() {
+  return this.sortedLocations;
+};
+
+Problem.prototype.getSortedLocation = function(i) {
+  return this.sortedLocations[i];
+}
+
+Problem.prototype.getSortedPickupLocations = function() {
+  return this.sortedPickupLocations;
+};
+
+Problem.prototype.getSortedPickupLocation = function(i) {
+  return this.sortedPickupLocations[i];
+};
+
+Problem.prototype.getSortedDeliveryLocations = function() {
+  return this.sortedDeliveryLocations;
+};
+
+Problem.prototype.getSortedDeliveryLocation = function(i) {
+  return this.sortedDeliveryLocations[i];
+};
 
 module.exports = Problem;
