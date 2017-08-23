@@ -47,7 +47,8 @@ BitSet.prototype.flip = function(from, to) {
   if (from === undefined) {
     return this;
   } else if (to === undefined) {
-    return this._toggle.call(this, from);
+    this._toggle.call(this, from);
+    return this;
   } else if (from <= to && from >= 0) {
     for (let i = from; i <= to; i++) {
       this._toggle.call(this, i);
