@@ -15,6 +15,12 @@ BitSet.prototype._convert = function(n) {
   return {byte, bit};
 };
 
+BitSet.prototype._toggle = function(n) {
+  let pos = this._convert.call(this, n);
+  if (pos) this[dataSymbol][pos.byte] ^= 1 << pos.bit;
+  return pos != null;
+}
+
 // public methods
 BitSet.prototype.and = function(set) {
 };
@@ -36,21 +42,15 @@ BitSet.prototype.get = function(n) {
   return pos ? (this[dataSymbol][pos.byte] & 1 << pos.bit) > 0 : null;
 };
 
-BitSet.prototype.toggle = function(n) {
-  let pos = this._convert.call(this, n);
-  if (pos) this[dataSymbol][pos.byte] ^= 1 << pos.bit;
-  return pos != null;
-}
-
 // Reverses the bits from startIndex to endIndex
 BitSet.prototype.flip = function(from, to) {
   if (from === undefined) {
     return this;
   } else if (to === undefined) {
-    return this.toggle.call(this, from);
+    return this._toggle.call(this, from);
   } else if (from <= to && from >= 0) {
     for (let i = from; i <= to; i++) {
-      this.toggle.call(this, i);
+      this._toggle.call(this, i);
     }
   }
   return this;
@@ -69,6 +69,18 @@ BitSet.prototype.equals = function(set) {
 // Duplicates the invoking BitSet object
 BitSet.prototype.clone = function() {
   return new BitSet(this.size);
+};
+
+BitSet.prototype.print = function() {
+  let str = '';
+  for (let i = 0, len = this.size; i <= len; i++) {
+    if (this.get(i)) {
+      str += '1';
+    } else {
+      str += '0';
+    }
+  }
+  console.log(str);
 };
 
 module.exports = BitSet;
