@@ -8,6 +8,10 @@ Array.prototype.add = function(el) {
   }
 };
 
+Array.prototype.get = function(i) {
+  return this[i];
+};
+
 Array.prototype.remove = function(el) {
   const i = this.indexOf(el);
   if (i !== -1) {
