@@ -42,11 +42,15 @@ BitSet.prototype.toggle = function(n) {
   return pos != null;
 }
 
-BitSet.prototype.clear = function(pos) {
+BitSet.prototype.flip = function(from, to) {
+  return this.toggle(from);
 };
 
 // Reverses the bits from startIndex to endIndex
-BitSet.prototype.flip = function(from, to) {
+// BitSet.prototype.flip = function(from, to) {
+// };
+
+BitSet.prototype.equals = function(set) {
 };
 
 // Duplicates the invoking BitSet object
