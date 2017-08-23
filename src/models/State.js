@@ -35,4 +35,8 @@ const State = function(problem, jPickup, visited, canVisit, load) {
   }
 };
 
+State.prototype.getVisited = function() {
+  return this.visited;
+};
+
 module.exports = State;
