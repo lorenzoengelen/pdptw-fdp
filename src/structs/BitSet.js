@@ -73,6 +73,10 @@ BitSet.prototype.clone = function() {
 };
 
 BitSet.prototype.print = function() {
+  console.log(this.toString());
+};
+
+BitSet.prototype.toString = function() {
   let str = '';
   for (let i = 0, len = this.size; i <= len; i++) {
     if (this.get(i)) {
@@ -81,7 +85,7 @@ BitSet.prototype.print = function() {
       str += '0';
     }
   }
-  console.log(str);
+  return str;
 };
 
 module.exports = BitSet;
