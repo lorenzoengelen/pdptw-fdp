@@ -39,4 +39,8 @@ State.prototype.getVisited = function() {
   return this.visited;
 };
 
+State.prototype.getCanVisit = function() {
+  return this.canVisit;
+};
+
 module.exports = State;
