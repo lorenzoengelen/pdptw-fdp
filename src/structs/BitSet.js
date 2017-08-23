@@ -57,10 +57,18 @@ BitSet.prototype.flip = function(from, to) {
 };
 
 BitSet.prototype.equals = function(set) {
+  const minSize = this.size < set.size ? this.size : set.size;
+  for (let i = 0; i <= minSize; i++) {
+    if (this.get.call(this, i) !== set.get(i)) {
+      return false;
+    }
+  }
+  return true;
 };
 
 // Duplicates the invoking BitSet object
 BitSet.prototype.clone = function() {
+  return new BitSet(this.size);
 };
 
 module.exports = BitSet;
