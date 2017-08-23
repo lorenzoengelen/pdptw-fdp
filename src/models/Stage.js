@@ -21,7 +21,10 @@ Stage.prototype.addNewState = function(oldState, newTermNode) {
 };
 
 Stage.prototype.criteria4 = function(state, loc, k) {
+};
 
+Stage.prototype.getStates = function() {
+  return this.states;
 };
 
 module.exports = Stage;
