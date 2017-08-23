@@ -13,6 +13,7 @@ Stage.prototype.createInitialStage = function() {
   let state;
   for (let i = 1; i <= this.numOrders; i++) {
     state = new State(this.problem, i);
+    this.states.put(state.getVisited().toString(), state);
   }
 };
 
