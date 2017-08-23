@@ -28,4 +28,14 @@ HashMap.prototype.get = function(key) {
   return this._dict[key];
 };
 
+HashMap.prototype.values = function() {
+  let values = new Array();
+  for (let key in this._dict) {
+    if (this._dict.hasOwnProperty(key)) {
+      values.push(this._dict[key]);
+    }
+  }
+  return values;
+};
+
 module.exports = HashMap;
