@@ -15,7 +15,7 @@ BitSet.prototype._convert = function(n) {
   return {byte, bit};
 };
 
-// public mehthods
+// public methods
 BitSet.prototype.and = function(set) {
 };
 
@@ -28,7 +28,7 @@ BitSet.prototype.or = function(set) {
 BitSet.prototype.xor = function(set) {
 };
 
-BitSet.prototype.set = function(pos) {
+BitSet.prototype.set = function(n) {
 };
 
 BitSet.prototype.get = function(n) {
@@ -42,13 +42,19 @@ BitSet.prototype.toggle = function(n) {
   return pos != null;
 }
 
-BitSet.prototype.flip = function(from, to) {
-  return this.toggle(from);
-};
-
 // Reverses the bits from startIndex to endIndex
-// BitSet.prototype.flip = function(from, to) {
-// };
+BitSet.prototype.flip = function(from, to) {
+  if (from === undefined) {
+    return this;
+  } else if (to === undefined) {
+    return this.toggle.call(this, from);
+  } else if (from <= to && from >= 0) {
+    for (let i = from; i <= to; i++) {
+      this.toggle.call(this, i);
+    }
+  }
+  return this;
+};
 
 BitSet.prototype.equals = function(set) {
 };
