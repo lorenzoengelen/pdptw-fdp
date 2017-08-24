@@ -89,7 +89,7 @@ BitSet.prototype.toString = function() {
 };
 
 BitSet.prototype.nextSetBit = function(n) {
-  for (let i = n || 0, len = this.size; i <= len; i++) {
+  for (let i = n + 1 || 1, len = this.size; i <= len; i++) {
     if (this.get(i)) return i;
   }
   return -1;
