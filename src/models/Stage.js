@@ -19,12 +19,20 @@ Stage.prototype.createInitialStage = function() {
 
 Stage.prototype.addNewState = function(oldState, newTermNode) {
   const newState = new State(this.problem, null, oldState.getVisited(), oldState.getCanVisit(), oldState.getLoad());
-
-  // newState.visitNode(newTermNode);
+  // CRITERIA #1 - NODE J IS NOT PREVIOUSLY VISITED
+  // CRITERIA #2 - IS J IS DESTINATION, J-N MUST HAVE BEEN VISITED
+  
+  console.log(newState.getVisited().toString(), '==', newState.getCanVisit().toString());
+  newState.visitNode(newTermNode);
+  console.log(newState.getVisited().toString(), '==', newState.getCanVisit().toString());
 
   // CRITERIA #3 - CAPACITY CONSTRAINT
   if (newState.getLoad() <= this.problem.getVehicleCapacity()) {
+    // if () {
 
+    // } else {
+
+    // }
   }
 };
 
