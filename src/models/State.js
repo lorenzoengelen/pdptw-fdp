@@ -3,7 +3,7 @@ const HashMap = require('../structs/HashMap.js');
 const TerminalNode = require('./TerminalNode.js');
 const Label = require('./Label.js');
 
-const State = function(problem, jPickup, visited, canVisit, load) {
+const State = function(problem, jPickup, n, visited, canVisit, load) {
   this.problem = problem;
   this.numOrders = problem.getNumberOfOrders();
 
@@ -30,8 +30,9 @@ const State = function(problem, jPickup, visited, canVisit, load) {
           this.problem.getDistance(0, jPickup),
           null));
 
-  } else if (arguments.length === 4) {
+  } else if (arguments.length === 6) {
     // not initial stage
+    console.log(jPickup, n, visited, canVisit, load);
   }
 };
 
@@ -45,6 +46,10 @@ State.prototype.getVisited = function() {
 
 State.prototype.getCanVisit = function() {
   return this.canVisit;
+};
+
+State.prototype.getLoad = function() {
+  return this.load;
 };
 
 module.exports = State;
