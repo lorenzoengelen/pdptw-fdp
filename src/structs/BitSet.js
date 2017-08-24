@@ -88,8 +88,9 @@ BitSet.prototype.toString = function() {
   return str;
 };
 
+// Returns the index of the first bit that is set to true that occurs on or after the specified starting index
 BitSet.prototype.nextSetBit = function(n) {
-  for (let i = n + 1 || 1, len = this.size; i <= len; i++) {
+  for (let i = n || 0, len = this.size; i <= len; i++) {
     if (this.get(i)) return i;
   }
   return -1;
