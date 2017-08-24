@@ -69,7 +69,9 @@ BitSet.prototype.equals = function(set) {
 
 // Duplicates the invoking BitSet object
 BitSet.prototype.clone = function() {
-  return new BitSet(this.size);
+  let bs = new BitSet(this.size);
+  bs[dataSymbol] = this[dataSymbol];
+  return bs;
 };
 
 BitSet.prototype.print = function() {
