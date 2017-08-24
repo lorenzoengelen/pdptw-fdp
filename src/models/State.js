@@ -42,6 +42,26 @@ State.prototype.isVisited = function(i) {
   return this.visited.get(i);
 };
 
+State.prototype.visitNode = function(j) {
+  // CRITERIA #1 - NODE J IS NOT PREVIOUSLY VISITED
+  // CRITERIA #2 - IS J IS DESTINATION, J-N MUST HAVE BEEN VISITED
+  console.log('visitNode', j);
+  if (j === 0) {
+    this.visited.flip(0);
+  } else {
+    if (j > this.numOrders) {
+      // j is delivery location
+      this.canVisit.flip(j);
+    } else {
+      // j is pickup location
+      this.canVisit.flip(j);
+      this.canVisit.flip(j + this.numOrders);
+    }
+    this.visited.flip(j);
+  }
+  this.load += this.problem.getLocation(j).getDemand();
+};
+
 State.prototype.getVisited = function() {
   return this.visited;
 };
