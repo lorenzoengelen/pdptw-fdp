@@ -88,8 +88,8 @@ BitSet.prototype.toString = function() {
   return str;
 };
 
-BitSet.prototype.nextSetBit = function() {
-  for (let i = 0, len = this.size; i <= len; i++) {
+BitSet.prototype.nextSetBit = function(n) {
+  for (let i = n || 0, len = this.size; i <= len; i++) {
     if (this.get(i)) return i;
   }
   return -1;
