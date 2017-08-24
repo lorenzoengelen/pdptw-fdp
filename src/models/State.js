@@ -35,6 +35,10 @@ const State = function(problem, jPickup, visited, canVisit, load) {
   }
 };
 
+State.prototype.isVisited = function(i) {
+  return this.visited.get(i);
+};
+
 State.prototype.getVisited = function() {
   return this.visited;
 };
