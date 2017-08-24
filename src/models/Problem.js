@@ -4,7 +4,7 @@ const Matrix = require('../structs/Matrix.js');
 const distance = require('../utils/distance.js');
 
 const Problem = function() {
-  this.locations = [];
+  this.locations = new Array();
   this.NUMBER_OF_LOCATIONS = null;
   this.NUMBER_OF_ORDERS = null;
   this.VEHICLE_CAPACITY = null;
@@ -14,9 +14,9 @@ const Problem = function() {
   this.distanceMatrix = null;
   this.timeMatrix = null;
 
-  this.sortedLocations = [];
-  this.sortedPickupLocations = [];
-  this.sortedDeliveryLocations = [];
+  this.sortedLocations = new Array();
+  this.sortedPickupLocations = new Array();
+  this.sortedDeliveryLocations = new Array();
 };
 
 // private methods
@@ -46,7 +46,7 @@ Problem.prototype._createSortedArrays = function() {
     return locA.getLatestServiceTime() - locB.getLatestServiceTime();
   };
 
-  this.sortedLocations = this.locations.sort(compareLatestServiceTime);
+  this.sortedLocations = new Array(this.locations).sort(compareLatestServiceTime);
   this.sortedPickupLocations = this.sortedPickupLocations.sort(compareLatestServiceTime);
   this.sortedDeliveryLocations = this.sortedDeliveryLocations.sort(compareLatestServiceTime);
 };
@@ -73,6 +73,7 @@ Problem.prototype.createProblem = function(instance) {
   orders.forEach((order, i) => {
     const {orderId, pickupLocationLon, pickupLocationLat, deliveryLocationLon, deliveryLocationLat, orderLoad, earliestPickupTime, latestPickupTime, earliestDeliveryTime, latestDeliveryTime, pickupServiceTime, deliveryServiceTime} = order;
     const pickup = new Location(id++, `pickup-${orderId}`, pickupLocationLon, pickupLocationLat, orderLoad, earliestPickupTime, latestPickupTime, pickupServiceTime, 0, id);
+    console.log('pickup id', id - 1);
     const delivery = new Location(id++, `delivery-${orderId}`, deliveryLocationLon, deliveryLocationLat, orderLoad * -1, earliestDeliveryTime, latestDeliveryTime, deliveryServiceTime, id - 2, 0);
     this.locations.push(pickup);
     this.locations.push(delivery);
@@ -83,6 +84,8 @@ Problem.prototype.createProblem = function(instance) {
     this.sortedPickupLocations.push(pickup);
     this.sortedDeliveryLocations.push(delivery);
   });
+
+
 
   this._calcDistTime();
   this._createSortedArrays();
