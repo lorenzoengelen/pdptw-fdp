@@ -46,7 +46,7 @@ Problem.prototype._createSortedArrays = function() {
     return locA.getLatestServiceTime() - locB.getLatestServiceTime();
   };
 
-  this.sortedLocations = new Array(this.locations).sort(compareLatestServiceTime);
+  this.sortedLocations = Array.from(this.locations).sort(compareLatestServiceTime);
   this.sortedPickupLocations.sort(compareLatestServiceTime);
   this.sortedDeliveryLocations.sort(compareLatestServiceTime);
 };
@@ -72,8 +72,8 @@ Problem.prototype.createProblem = function(instance) {
 
   orders.forEach((order, i) => {
     const {orderId, pickupLocationLon, pickupLocationLat, deliveryLocationLon, deliveryLocationLat, orderLoad, earliestPickupTime, latestPickupTime, earliestDeliveryTime, latestDeliveryTime, pickupServiceTime, deliveryServiceTime} = order;
-    const pickup = new Location(id++, `pickup-${orderId}`, pickupLocationLon, pickupLocationLat, orderLoad, earliestPickupTime, latestPickupTime, pickupServiceTime, 0, id);
-    const delivery = new Location(id++, `delivery-${orderId}`, deliveryLocationLon, deliveryLocationLat, orderLoad * -1, earliestDeliveryTime, latestDeliveryTime, deliveryServiceTime, id - 2, 0);
+    const pickup = new Location(id, `pickup-${orderId}`, pickupLocationLon, pickupLocationLat, orderLoad, earliestPickupTime, latestPickupTime, pickupServiceTime, 0, id + this.NUMBER_OF_ORDERS);
+    const delivery = new Location(id + this.NUMBER_OF_ORDERS, `delivery-${orderId}`, deliveryLocationLon, deliveryLocationLat, orderLoad * -1, earliestDeliveryTime, latestDeliveryTime, deliveryServiceTime, id++, 0);
     this.locations[orderId] = pickup;
     this.locations[orderId + this.NUMBER_OF_ORDERS] = delivery;
     this.refLocations.put(pickup.getReference(), pickup.getId());
@@ -83,8 +83,6 @@ Problem.prototype.createProblem = function(instance) {
     this.sortedPickupLocations.push(pickup);
     this.sortedDeliveryLocations.push(delivery);
   });
-
-
 
   this._calcDistTime();
   this._createSortedArrays();
