@@ -3,7 +3,7 @@ const HashMap = require('../structs/HashMap.js');
 const TerminalNode = require('./TerminalNode.js');
 const Label = require('./Label.js');
 
-const State = function(problem, jPickup, n, visited, canVisit, load) {
+const State = function(problem, jPickup, visited, canVisit, load) {
   this.problem = problem;
   this.numOrders = problem.getNumberOfOrders();
 
@@ -13,7 +13,7 @@ const State = function(problem, jPickup, n, visited, canVisit, load) {
   this.terminalNodes = new HashMap();
 
   if (arguments.length === 2) {
-    // for initial stage (Pickup Nodes)
+    // FOR initial stage (Pickup Nodes)
     this.visited = (new BitSet(2 * this.numOrders))
       .flip(0)
       .flip(jPickup);
@@ -30,9 +30,11 @@ const State = function(problem, jPickup, n, visited, canVisit, load) {
           this.problem.getDistance(0, jPickup),
           null));
 
-  } else if (arguments.length === 6) {
-    // not initial stage
-    console.log(jPickup, n, visited, canVisit, load);
+  } else if (arguments.length === 5) {
+    // NOT initial stage
+    this.visited = visited.clone();
+    this.canVisit = canVisit.clone();
+    this.load = load;
   }
 };
 

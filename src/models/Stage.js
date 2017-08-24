@@ -17,8 +17,15 @@ Stage.prototype.createInitialStage = function() {
   }
 };
 
-// CRITERIA #3 - CAPACITY CONSTRAINT
 Stage.prototype.addNewState = function(oldState, newTermNode) {
+  const newState = new State(this.problem, null, oldState.getVisited(), oldState.getCanVisit(), oldState.getLoad());
+
+  // newState.visitNode(newTermNode);
+
+  // CRITERIA #3 - CAPACITY CONSTRAINT
+  if (newState.getLoad() <= this.problem.getVehicleCapacity()) {
+
+  }
 };
 
 // CRITERIA #4 - POSSIBLE TO VISIT UNVISITED NODES WHILE RESPECTING TIME CONSTRAINT
