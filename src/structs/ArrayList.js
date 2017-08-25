@@ -31,4 +31,8 @@ Array.prototype.toggle = function(el) {
   }
 };
 
+Array.prototype.size = function() {
+  return this.length;
+};
+
 module.exports = ArrayList;
