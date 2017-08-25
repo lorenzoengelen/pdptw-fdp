@@ -6,4 +6,20 @@ const Label = function(termNode, time, distance, previousLabel) {
   this.previousLabel = previousLabel;
 };
 
+Label.prototype.getTime = function() {
+  return this.time;
+};
+
+Label.prototype.getDistance = function() {
+  return this.distance;
+};
+
+Label.prototype.getTermNode = function() {
+  return this.termNode;
+};
+
+Label.prototype.getPreviousLabel = function() {
+  return this.previousLabel;
+};
+
 module.exports = Label;
