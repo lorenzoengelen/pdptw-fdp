@@ -36,4 +36,14 @@ HashMap.prototype.values = function() {
   return values;
 };
 
+HashMap.prototype.remove = function(key) {
+  if (this._dict.hasOwnProperty(key)) {
+    const value = this._dict[key];
+    delete this._dict[key];
+    return value;
+  } else {
+    return -1;
+  }
+};
+
 module.exports = HashMap;
