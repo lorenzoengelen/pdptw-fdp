@@ -22,4 +22,16 @@ Label.prototype.getPreviousLabel = function() {
   return this.previousLabel;
 };
 
+Label.prototype.setTime = function(newTime) {
+  this.time = newTime;
+};
+
+Label.prototype.setDistance = function(newDist) {
+  this.distance = newDist;
+};
+
+Label.prototype.setTermNode = function(newTermNode) {
+  this.termNode = newTermNode;
+};
+
 module.exports = Label;
