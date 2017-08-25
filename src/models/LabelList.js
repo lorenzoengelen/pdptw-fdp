@@ -37,6 +37,24 @@ LabelList.prototype.addNewLabels = function(labels, newNode) {
   }
 };
 
+LabelList.prototype.eliminateLabels = function() {
+  // this.labelList.sort();
+  const labelCheck = this.labelList.get(0);
+  const buffer = new ArrayList();
+  buffer.add(labelCheck);
+  for (let i = 1, len = this.labelList.size(); i < len; i++) {
+    const labelCurrent = this.labelList.get(i);
+    if (!labelCurrent.getEliminated()) {
+      // ELIMINATE labels based on distance // TODO; change to time
+      if (labelCheck.getDistance() > labelCurrent.getDistance()) {
+        labelCheck = labelCurrent;
+        buffer.add(labelCheck);
+      }
+    }
+  }
+  this.labelList = buffer;
+};
+
 LabelList.prototype.getLabelList = function() {
   return this.labelList;
 };
