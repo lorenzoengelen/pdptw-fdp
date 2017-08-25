@@ -2,6 +2,7 @@ const BitSet = require('../structs/BitSet.js');
 const HashMap = require('../structs/HashMap.js');
 const TerminalNode = require('./TerminalNode.js');
 const Label = require('./Label.js');
+const LabelList = require('./LabelList.js');
 
 const State = function(problem, jPickup, visited, canVisit, load) {
   this.problem = problem;
@@ -45,21 +46,21 @@ State.prototype.isVisited = function(i) {
 State.prototype.visitNode = function(j) {
   // CRITERIA #1 - NODE J IS NOT PREVIOUSLY VISITED
   // CRITERIA #2 - IS J IS DESTINATION, J-N MUST HAVE BEEN VISITED
-  console.log('visitNode', j);
   if (j === 0) {
     this.visited.flip(0);
   } else {
-    if (j > this.numOrders) {
-      // j is delivery location
-      this.canVisit.flip(j);
-    } else {
+    if (j <= this.numOrders) {
       // j is pickup location
-      this.canVisit.flip(j);
       this.canVisit.flip(j + this.numOrders);
     }
+    this.canVisit.flip(j);
     this.visited.flip(j);
   }
   this.load += this.problem.getLocation(j).getDemand();
+};
+
+State.prototype.addTerminalNode = function(newTermNode, oldLabels) {
+
 };
 
 State.prototype.getVisited = function() {
@@ -72,6 +73,14 @@ State.prototype.getCanVisit = function() {
 
 State.prototype.getLoad = function() {
   return this.load;
+};
+
+State.prototype.getLabelList = function() {
+  const labelList = new LabelList();
+  this.terminalNodes.values().forEach(termNode => {
+    labelList.addLabels(termNode.getLabelList());
+  });
+  return labelList.getLabelList();
 };
 
 module.exports = State;
