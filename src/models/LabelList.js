@@ -8,6 +8,10 @@ LabelList.prototype.addLabel = function(label) {
   this.labelList.add(label);
 };
 
+LabelList.prototype.addLabels = function(labels) {
+  console.log('Hé');
+};
+
 LabelList.prototype.getLabelList = function() {
   return this.labelList;
 };
