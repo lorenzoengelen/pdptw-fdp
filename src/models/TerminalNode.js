@@ -1,8 +1,9 @@
 const LabelList = require('./LabelList.js');
 
-const TerminalNode = function(termNode) {
+const TerminalNode = function(problem, termNode) {
+  this.problem = problem;
   this.terminalNode = termNode;
-  this.labelList = new LabelList();
+  this.labelList = new LabelList(this.problem);
 };
 
 TerminalNode.prototype.addLabel = function(label) {
