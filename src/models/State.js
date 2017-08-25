@@ -64,6 +64,9 @@ State.prototype.addTerminalNode = function(newTermNode, oldLabels) {
     this.terminalNodes.put(newTermNode, new TerminalNode(this.problem, newTermNode));
   }
   this.terminalNodes.get(newTermNode).addNewLabels(oldLabels);
+  if (this.terminalNodes.get(newTermNode).getLabelList().isEmpty()) {
+    this.terminalNodes.remove(newTermNode);
+  }
 };
 
 State.prototype.getVisited = function() {
