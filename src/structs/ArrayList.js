@@ -35,4 +35,11 @@ Array.prototype.size = function() {
   return this.length;
 };
 
+Array.prototype.isEmpty = function() {
+  if (!Array.isArray(this) || !this.length) {
+    return true;
+  }
+  return false;
+}
+
 module.exports = ArrayList;
