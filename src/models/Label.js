@@ -32,6 +32,10 @@ Label.prototype.getPreviousLabel = function() {
   return this.previousLabel;
 };
 
+Label.prototype.getEliminated = function() {
+  return this.eliminated;
+};
+
 Label.prototype.setTime = function(newTime) {
   this.time = newTime;
   return this;
