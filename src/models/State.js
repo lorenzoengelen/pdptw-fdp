@@ -69,6 +69,12 @@ State.prototype.addTerminalNode = function(newTermNode, oldLabels) {
   }
 };
 
+State.prototype.eliminateLabels = function() {
+  this.terminalNodes.values().forEach(termNode => {
+    termNode.eliminateLabels();
+  });
+};
+
 State.prototype.getVisited = function() {
   return this.visited;
 };
