@@ -57,11 +57,12 @@ Stage.prototype.criteria4 = function(state, loc, k) {
 
 Stage.prototype.reduceStates = function(iter) {
   this.states.values().forEach(state => {
-
+    state.eliminateLabels();
     if (iter) {
-
+      // TODO
+      console.log('we have an ITER');
     } else {
-
+      // TODO
     }
   });
 };
