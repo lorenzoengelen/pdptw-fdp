@@ -14,6 +14,10 @@ TerminalNode.prototype.addNewLabels = function(oldLabels) {
   this.labelList.addNewLabels(oldLabels, this.terminalNode);
 };
 
+TerminalNode.prototype.eliminateLabels = function() {
+  this.labelList.eliminateLabels();
+};
+
 TerminalNode.prototype.getLabelList = function() {
   return this.labelList.getLabelList();
 };
