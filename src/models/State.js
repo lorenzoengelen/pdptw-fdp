@@ -24,7 +24,7 @@ const State = function(problem, jPickup, visited, canVisit, load) {
       .flip(jPickup)
       .flip(jPickup + this.numOrders);
 
-    this.terminalNodes.put(jPickup, new TerminalNode(jPickup));
+    this.terminalNodes.put(jPickup, new TerminalNode(this.problem, jPickup));
     this.terminalNodes.get(jPickup)
       .addLabel(new Label(jPickup,
           Math.max(this.problem.getTime(0, jPickup), this.problem.getLocation(jPickup).getEarliestServiceTime()),
@@ -60,7 +60,10 @@ State.prototype.visitNode = function(j) {
 };
 
 State.prototype.addTerminalNode = function(newTermNode, oldLabels) {
-
+  if (!this.terminalNodes.get(newTermNode)) {
+    this.terminalNodes.put(newTermNode, new TerminalNode(this.problem, newTermNode));
+  }
+  this.terminalNodes.get(newTermNode).addNewLabels(oldLabels);
 };
 
 State.prototype.getVisited = function() {
@@ -76,7 +79,7 @@ State.prototype.getLoad = function() {
 };
 
 State.prototype.getLabelList = function() {
-  const labelList = new LabelList();
+  const labelList = new LabelList(this.problem);
   this.terminalNodes.values().forEach(termNode => {
     labelList.addLabels(termNode.getLabelList());
   });
