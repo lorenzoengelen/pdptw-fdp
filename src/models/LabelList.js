@@ -31,6 +31,9 @@ LabelList.prototype.addNewLabels = function(labels, newNode) {
       .setTermNode(newNode);
 
     // CRITERIA 5 - TIME CONSTRAINT MUST BE RESPECTED
+    if (label.getTime() <= this.problem.getLocation(newNode).getLatestServiceTime()) {
+      this.labelList.add(label);
+    }
   }
 };
 
