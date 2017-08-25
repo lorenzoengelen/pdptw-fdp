@@ -9,7 +9,9 @@ LabelList.prototype.addLabel = function(label) {
 };
 
 LabelList.prototype.addLabels = function(labels) {
-  console.log('Hé');
+  for (let i = 0; i < labels.size(); i++) {
+    this.labelList.add(labels.get(i));
+  }
 };
 
 LabelList.prototype.getLabelList = function() {
