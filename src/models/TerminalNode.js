@@ -9,4 +9,8 @@ TerminalNode.prototype.addLabel = function(label) {
   this.labelList.addLabel(label);
 };
 
+TerminalNode.prototype.getLabelList = function() {
+  return this.labelList.getLabelList();
+};
+
 module.exports = TerminalNode;
