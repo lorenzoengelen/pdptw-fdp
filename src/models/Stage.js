@@ -28,11 +28,12 @@ Stage.prototype.addNewState = function(oldState, newTermNode) {
 
   // CRITERIA #3 - CAPACITY CONSTRAINT
   if (newState.getLoad() <= this.problem.getVehicleCapacity()) {
-    // if () {
-
-    // } else {
-
-    // }
+    if (!this.states.get(newState.getVisited().toString())) {
+      newState.addTerminalNode(newTermNode, oldState.getLabelList());
+      // TODO 
+    } else {
+      // TODO
+    }
   }
 };
 
