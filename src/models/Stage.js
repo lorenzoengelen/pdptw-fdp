@@ -59,8 +59,7 @@ Stage.prototype.reduceStates = function(iter) {
   this.states.values().forEach(state => {
     state.eliminateLabels();
     if (iter) {
-      // TODO
-      console.log('we have an ITER');
+      state.checkPostFeasibility() // TODO
     } else {
       // TODO
     }

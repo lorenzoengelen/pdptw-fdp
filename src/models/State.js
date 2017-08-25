@@ -75,6 +75,12 @@ State.prototype.eliminateLabels = function() {
   });
 };
 
+State.prototype.checkPostFeasibility = function(iter) {
+  this.terminalNodes.values().forEach(termNode => {
+    termNode.checkPostFeasibility(this, iter); // TODO
+  });
+};
+
 State.prototype.getVisited = function() {
   return this.visited;
 };
