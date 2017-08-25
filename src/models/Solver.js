@@ -29,16 +29,13 @@ Solver.prototype.solve = function(instance, timeout) {
 
     if (i === len) {
       // final stage
-
+      // TODO
     } else {
-      // stages
-      // ===> HERE <=== 
+      // LOOP over states
       prevStage.getStates().values().forEach(state => {
         if (Date.now() > end) {
           return 'exceeded time limit';
         }
-        // ===> HERE <=== 
-        // state.getCanVisit().print(); // console log
         // LOOP over every location that can be visited from a specific state
         for (let loc = state.getCanVisit().nextSetBit(0); loc >= 0; loc = state.getCanVisit().nextSetBit(loc + 1)) {
           if (Date.now() > end) {
@@ -47,12 +44,11 @@ Solver.prototype.solve = function(instance, timeout) {
           // CRITERIA #4 - POSSIBLE TO VISIT UNVISITED NODES WHILE RESPECTING TIME CONSTRAINT
           if (newStage.criteria4(state, loc, i)) {
             // POSSIBLE to visit specific location; k-2, to k+4 nodes sorted on earliest due date can be visited without time window violation
-            // ===> HERE <===
-            newStage.addNewState(state, loc);
+            newStage.addNewState(state, loc); // FINISHED
           }
-
         }
       });
+      newStage.reduceStates(i); // TODO
     }
     this.stages.add(newStage);
   }
