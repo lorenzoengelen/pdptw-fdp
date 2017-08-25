@@ -48,6 +48,7 @@ Solver.prototype.solve = function(instance, timeout) {
           }
         }
       });
+      // REDUCE the states that are redundant
       newStage.reduceStates(i); // TODO
     }
     this.stages.add(newStage);

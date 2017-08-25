@@ -55,6 +55,17 @@ Stage.prototype.criteria4 = function(state, loc, k) {
   return true;
 };
 
+Stage.prototype.reduceStates = function(iter) {
+  this.states.values().forEach(state => {
+
+    if (iter) {
+
+    } else {
+
+    }
+  });
+};
+
 Stage.prototype.getStates = function() {
   return this.states;
 };
