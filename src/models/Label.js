@@ -6,6 +6,14 @@ const Label = function(termNode, time, distance, previousLabel) {
   this.previousLabel = previousLabel;
 };
 
+Label.prototype.addDistance = function(dist) {
+  this.setDistance(this.getDistance() + dist);
+};
+
+Label.prototype.addTime = function(time) {
+  this.setTime(this.getTime() + time);
+};
+
 Label.prototype.getTime = function() {
   return this.time;
 };
