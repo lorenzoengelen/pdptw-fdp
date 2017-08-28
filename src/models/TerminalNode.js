@@ -18,6 +18,19 @@ TerminalNode.prototype.eliminateLabels = function() {
   this.labelList.eliminateLabels();
 };
 
+TerminalNode.prototype.checkPostFeasibility = function() {
+  console.log(this.labelList.getLabelList().size())
+};
+
+TerminalNode.prototype.criteria6 = function() {
+};
+
+TerminalNode.prototype.criteria7 = function() {
+};
+
+TerminalNode.prototype.criteria8 = function() {
+};
+
 TerminalNode.prototype.getLabelList = function() {
   return this.labelList.getLabelList();
 };
