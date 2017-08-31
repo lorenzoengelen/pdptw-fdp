@@ -39,7 +39,7 @@ LabelList.prototype.addNewLabels = function(labels, newNode) {
 
 LabelList.prototype.eliminateLabels = function() {
   // this.labelList.sort();
-  const labelCheck = this.labelList.get(0);
+  let labelCheck = this.labelList.get(0);
   const buffer = new ArrayList();
   buffer.add(labelCheck);
   for (let i = 1, len = this.labelList.size(); i < len; i++) {
