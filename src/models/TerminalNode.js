@@ -24,7 +24,7 @@ TerminalNode.prototype.checkPostFeasibility = function(state, iter) {
     if (!this.criteria6(state, iter, label)) {
       this.labelList.getLabelList().remove(i);
     } else if (!this.criteria8(state, label)) {
-      // TODO
+      console.log('I', i);
     } else if (!this.criteria7(state, label)) {
       // TODO
     }
@@ -82,10 +82,18 @@ TerminalNode.prototype.criteria8 = function(state, label) {
   }
 
   if (found1 && found2) {
-    let time1 = Math.max(this.problem.getLocation(pick1).getEarliestServiceTime(), label.getTime() + this.problem.getServiceTimeDuration(label.getTermNode()) + this.problem.getTime(label.getTermNode(), pick1));
-    console.log(this.problem.getLocation(pick1).getEarliestServiceTime());
-    console.log(label.getTime() + this.problem.getServiceTimeDuration(label.getTermNode()) + this.problem.getTime(label.getTermNode(), pick1))
-    let time2 = Math.max();
+    let time1 = Math.max(this.problem.getLocation(pick1).getEarliestServiceTime(),
+      label.getTime() + this.problem.getServiceTimeDuration(label.getTermNode()) + this.problem.getTime(label.getTermNode(), pick1))
+      + this.problem.getServiceTimeDuration(pick1) 
+      + this.problem.getTime(pick1, pick2);
+
+    let time2 = Math.max(this.problem.getLocation(pick2).getEarliestServiceTime(), 
+      label.getTime() + this.problem.getServiceTimeDuration(label.getTermNode()) + this.problem.getTime(label.getTermNode(), pick2))
+      + this.problem.getServiceTimeDuration(pick2)
+      + this.problem.getTime(pick2, pick1);
+    
+    return time1 <= this.problem.getLocation(pick2).getLatestServiceTime() ||
+      time2 <= this.problem.getLocation(pick1).getLatestServiceTime();
   } else {
     return true;
   }
